@@ -1,0 +1,155 @@
+//
+//  DashboardView.swift
+//  DevHubAIApp
+//
+//  Created by ESI on 6/15/26.
+//
+
+import SwiftUI
+
+struct DashboardView: View {
+
+    @State
+    private var viewModel = DashboardViewModel()
+
+    var body: some View {
+
+        NavigationStack {
+
+            VStack {
+
+                // Search Section
+
+                VStack(spacing: 16) {
+
+                    TextField(
+                        "GitHub Username",
+                        text: $viewModel.username
+                    )
+                    .textFieldStyle(.roundedBorder)
+
+                    Button {
+
+                        Task {
+                            await viewModel.search()
+                        }
+
+                    } label: {
+
+                        Label(
+                            "Search",
+                            systemImage: "magnifyingglass"
+                        )
+                        .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+                }
+                .padding()
+
+                // Content Section
+
+                Group {
+
+                    if viewModel.isLoading {
+
+                        ProgressView()
+
+                    } else if let error = viewModel.errorMessage {
+
+                        ContentUnavailableView(
+                            error,
+                            systemImage: "exclamationmark.triangle"
+                        )
+
+                    } else if let user = viewModel.user {
+
+                        ScrollView {
+
+                            VStack(spacing: 20) {
+
+                                AsyncImage(
+                                    url: URL(string: user.avatarUrl)
+                                ) { image in
+
+                                    image
+                                        .resizable()
+                                        .scaledToFill()
+
+                                } placeholder: {
+
+                                    ProgressView()
+                                }
+                                .frame(
+                                    width: 120,
+                                    height: 120
+                                )
+                                .clipShape(Circle())
+
+                                Text(
+                                    user.name ?? "Unknown"
+                                )
+                                .font(.title)
+
+                                Text(
+                                    "@\(user.login)"
+                                )
+                                .foregroundStyle(.secondary)
+
+                                DashboardCard {
+
+                                    HStack {
+
+                                        VStack {
+
+                                            Text(
+                                                "\(user.publicRepos)"
+                                            )
+                                            .bold()
+
+                                            Text("Repos")
+                                        }
+
+                                        Spacer()
+
+                                        VStack {
+
+                                            Text(
+                                                "\(user.followers)"
+                                            )
+                                            .bold()
+
+                                            Text("Followers")
+                                        }
+
+                                        Spacer()
+
+                                        VStack {
+
+                                            Text(
+                                                "\(user.following)"
+                                            )
+                                            .bold()
+
+                                            Text("Following")
+                                        }
+                                    }
+                                }
+                            }
+                            .padding()
+                        }
+
+                    } else {
+
+                        ContentUnavailableView(
+                            "Search a GitHub user",
+                            systemImage: "magnifyingglass"
+                        )
+                    }
+                }
+
+                Spacer()
+            }
+            .navigationTitle("Dashboard")
+        }
+    }
+}
