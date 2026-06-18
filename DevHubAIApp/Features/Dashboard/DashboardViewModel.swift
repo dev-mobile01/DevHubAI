@@ -21,6 +21,8 @@ final class DashboardViewModel {
 
     private let api = GitHubAPI()
 
+    var repositories: [GitHubRepository] = []
+    
     func search() async {
 
         guard !username.isEmpty else {
@@ -40,9 +42,16 @@ final class DashboardViewModel {
                 username: username
             )
 
+            repositories = try await api.fetchRepositories(
+                username: username
+            )
+
         } catch {
 
             user = nil
+
+            repositories = []
+
             errorMessage = "User not found"
         }
     }

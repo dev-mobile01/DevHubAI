@@ -26,4 +26,22 @@ final class GitHubAPI {
             from: data
         )
     }
+    
+    func fetchRepositories(
+        username: String
+    ) async throws -> [GitHubRepository] {
+
+        let url = URL(
+            string: "https://api.github.com/users/\(username)/repos"
+        )!
+
+        let (data, _) = try await URLSession.shared.data(
+            from: url
+        )
+
+        return try JSONDecoder().decode(
+            [GitHubRepository].self,
+            from: data
+        )
+    }
 }

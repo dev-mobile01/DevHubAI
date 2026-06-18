@@ -134,6 +134,30 @@ struct DashboardView: View {
                                         }
                                     }
                                 }
+                                
+                                if !viewModel.repositories.isEmpty {
+
+                                    VStack(
+                                        alignment: .leading,
+                                        spacing: 12
+                                    ) {
+
+                                        Text("Repositories")
+                                            .font(.title2)
+                                            .bold()
+
+                                        ForEach(
+                                            viewModel.repositories
+                                        ) { repository in
+
+                                            RepositoryRow(
+                                                repository: repository
+                                            )
+
+                                            Divider()
+                                        }
+                                    }
+                                }
                             }
                             .padding()
                         }
