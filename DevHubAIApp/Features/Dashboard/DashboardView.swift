@@ -150,9 +150,18 @@ struct DashboardView: View {
                                             viewModel.repositories
                                         ) { repository in
 
-                                            RepositoryRow(
-                                                repository: repository
-                                            )
+                                            NavigationLink {
+
+                                                RepositoryDetailView(
+                                                    repository: repository
+                                                )
+
+                                            } label: {
+
+                                                RepositoryRow(
+                                                    repository: repository
+                                                )
+                                            }
 
                                             Divider()
                                         }
