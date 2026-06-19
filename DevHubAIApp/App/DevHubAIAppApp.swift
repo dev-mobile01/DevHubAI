@@ -15,5 +15,10 @@ struct DevHubAIAppApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(
+            for: [
+                FavoriteRepository.self
+            ]
+        )
     }
 }

@@ -6,13 +6,40 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct NotesView: View {
 
+    @Query
+    private var favorites:
+        [FavoriteRepository]
+
     var body: some View {
+
         NavigationStack {
-            Text("Notes")
-                .navigationTitle("DevHubAI")
+
+            List(favorites) { repository in
+
+                VStack(
+                    alignment: .leading
+                ) {
+
+                    Text(
+                        repository.name
+                    )
+                    .bold()
+
+                    Text(
+                        repository.language
+                    )
+                    .foregroundStyle(
+                        .secondary
+                    )
+                }
+            }
+            .navigationTitle(
+                "Favorites"
+            )
         }
     }
 }
