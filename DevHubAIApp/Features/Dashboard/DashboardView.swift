@@ -18,33 +18,7 @@ struct DashboardView: View {
 
             VStack {
 
-                // Search Section
-
-                VStack(spacing: 16) {
-
-                    TextField(
-                        "GitHub Username",
-                        text: $viewModel.username
-                    )
-                    .textFieldStyle(.roundedBorder)
-
-                    Button {
-
-                        Task {
-                            await viewModel.search()
-                        }
-
-                    } label: {
-
-                        Label(
-                            "Search",
-                            systemImage: "magnifyingglass"
-                        )
-                        .frame(maxWidth: .infinity)
-                    }
-                    .buttonStyle(.borderedProminent)
-                }
-                .padding()
+            
 
                 // Content Section
 
@@ -183,6 +157,22 @@ struct DashboardView: View {
                 Spacer()
             }
             .navigationTitle("Dashboard")
+        }
+        .searchable(
+            text: $viewModel.username,
+            prompt: "Search GitHub User"
+        )
+        .onChange(
+            of: viewModel.username
+        ) {
+
+            viewModel.searchWithDebounce()
+        }
+        .onSubmit(of: .search) {
+
+            Task {
+                await viewModel.search()
+            }
         }
     }
 }

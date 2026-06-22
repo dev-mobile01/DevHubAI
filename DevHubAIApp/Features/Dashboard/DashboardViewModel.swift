@@ -23,8 +23,14 @@ final class DashboardViewModel {
 
     var repositories: [GitHubRepository] = []
     
+    private var searchTask: Task<Void, Never>?
+    
     func search() async {
 
+        guard username.count > 2 else {
+            return
+        }
+        
         guard !username.isEmpty else {
             return
         }
@@ -53,6 +59,24 @@ final class DashboardViewModel {
             repositories = []
 
             errorMessage = "User not found"
+        }
+    }
+    
+    func searchWithDebounce() {
+
+        searchTask?.cancel()
+
+        searchTask = Task {
+
+            try? await Task.sleep(
+                for: .milliseconds(700)
+            )
+
+            guard !Task.isCancelled else {
+                return
+            }
+
+            await search()
         }
     }
 }
