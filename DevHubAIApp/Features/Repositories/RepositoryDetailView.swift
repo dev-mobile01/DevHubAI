@@ -65,6 +65,39 @@ struct RepositoryDetailView: View {
                 )
             }
             
+            Section("Actions") {
+
+                Link(
+                    "Open in GitHub",
+                    destination: URL(
+                        string: repository.htmlUrl
+                    )!
+                )
+
+                ShareLink(
+                    item: repository.htmlUrl
+                ) {
+
+                    Label(
+                        "Share Repository",
+                        systemImage: "square.and.arrow.up"
+                    )
+                }
+                
+                Button {
+
+                    UIPasteboard.general.string =
+                        repository.htmlUrl
+
+                } label: {
+
+                    Label(
+                        "Copy URL",
+                        systemImage: "doc.on.doc"
+                    )
+                }
+            }
+            
             Section {
 
                 Button {

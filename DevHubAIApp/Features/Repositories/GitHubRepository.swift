@@ -20,6 +20,8 @@ struct GitHubRepository: Codable, Identifiable {
     let forksCount: Int
 
     let language: String?
+    
+    let htmlUrl: String
 
     enum CodingKeys: String, CodingKey {
 
@@ -34,5 +36,7 @@ struct GitHubRepository: Codable, Identifiable {
         case stargazersCount = "stargazers_count"
 
         case forksCount = "forks_count"
+        
+        case htmlUrl = "html_url"
     }
 }
