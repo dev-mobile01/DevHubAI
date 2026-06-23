@@ -22,11 +22,22 @@ struct DashboardCard<Content: View>: View {
         content
             .padding()
             .frame(maxWidth: .infinity)
-            .background(AppColors.cardBackground)
-            .clipShape(
+            .background(
                 RoundedRectangle(
                     cornerRadius: AppCornerRadius.large
                 )
+                .fill(AppColors.cardBackground)
+            )
+            .overlay {
+                RoundedRectangle(
+                    cornerRadius: AppCornerRadius.large
+                )
+                .stroke(.quaternary)
+            }
+            .shadow(
+                color: .black.opacity(0.05),
+                radius: 8,
+                y: 2
             )
     }
 }

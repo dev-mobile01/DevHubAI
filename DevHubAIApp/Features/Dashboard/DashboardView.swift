@@ -18,21 +18,18 @@ struct DashboardView: View {
 
             VStack {
 
-            
-
                 // Content Section
 
                 Group {
 
                     if viewModel.isLoading {
 
-                        ProgressView()
+                        LoadingView()
 
                     } else if let error = viewModel.errorMessage {
 
-                        ContentUnavailableView(
-                            error,
-                            systemImage: "exclamationmark.triangle"
+                        ErrorStateView(
+                            message: error
                         )
 
                     } else if let user = viewModel.user {
@@ -51,7 +48,7 @@ struct DashboardView: View {
 
                                 } placeholder: {
 
-                                    ProgressView()
+                                    LoadingView()
                                 }
                                 .frame(
                                     width: 120,
@@ -120,9 +117,7 @@ struct DashboardView: View {
                                             .font(.title2)
                                             .bold()
 
-                                        ForEach(
-                                            viewModel.repositories
-                                        ) { repository in
+                                        ForEach(viewModel.repositories) { repository in
 
                                             NavigationLink {
 
@@ -140,6 +135,14 @@ struct DashboardView: View {
                                             Divider()
                                         }
                                     }
+
+                                } else if viewModel.user != nil {
+
+                                    EmptyStateView(
+                                        title: "No Repositories",
+                                        message: "This GitHub user has no public repositories.",
+                                        systemImage: "folder"
+                                    )
                                 }
                             }
                             .padding()
@@ -147,8 +150,9 @@ struct DashboardView: View {
 
                     } else {
 
-                        ContentUnavailableView(
-                            "Search a GitHub user",
+                        EmptyStateView(
+                            title: "Welcome",
+                            message: "Search a GitHub user",
                             systemImage: "magnifyingglass"
                         )
                     }

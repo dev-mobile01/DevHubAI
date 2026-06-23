@@ -35,20 +35,12 @@ struct FavoritesView: View {
             
             Group {
                 if favorites.isEmpty {
-                    
-                    ContentUnavailableView {
-                        
-                        Label(
-                            "No Favorites",
-                            systemImage: "star"
-                        )
-                        
-                    } description: {
-                        
-                        Text(
-                            "Save repositories to access them later."
-                        )
-                    }
+                                        
+                    EmptyStateView(
+                        title: "No Favorites",
+                        message: "Save repositories to access them later.",
+                        systemImage: "star"
+                    )
                     
                 } else {
                     
