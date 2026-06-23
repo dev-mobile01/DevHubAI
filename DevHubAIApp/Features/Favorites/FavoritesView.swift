@@ -72,9 +72,6 @@ struct FavoritesView: View {
                         }
                         .onDelete(perform: deleteFavorite)
                     }
-                    .navigationTitle(
-                        "Favorites"
-                    )
                 }
             }
             .navigationTitle("Favorites")
