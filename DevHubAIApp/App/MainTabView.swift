@@ -23,11 +23,11 @@ struct MainTabView: View {
                     Label("Tools", systemImage: "hammer")
                 }
 
-            NotesView()
+            FavoritesView()
                 .tabItem {
-                    Label("Notes", systemImage: "note.text")
+                    Label("Favorites", systemImage: "star.fill")
                 }
-
+            
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gear")
