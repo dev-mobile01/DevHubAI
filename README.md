@@ -1,8 +1,10 @@
-DevHubAI
+# DevHubAI
 
 A modern SwiftUI portfolio project built to showcase iOS development skills, software architecture, and Apple ecosystem technologies.
 
-Overview
+Built with SwiftUI, SwiftData, Observation, and GitHub REST API.
+
+## Overview
 
 DevHubAI is a developer-focused application built with SwiftUI and modern Apple frameworks.
 
@@ -27,59 +29,57 @@ The long-term goal is to support:
 
 from a shared SwiftUI codebase.
 
-⸻
+## Features
 
-Features
+### GitHub Integration
 
-GitHub User Search
+* Search GitHub users
+* View public repositories
+* Repository details
+* Open repository in GitHub
+* Share repository links
+* Copy repository URLs
 
-Search any GitHub user and display:
+### Favorites
 
-* Profile Avatar
-* Name
-* Username
-* Followers
-* Following
-* Public Repositories
+* Save repositories locally
+* SwiftData persistence
+* Delete favorites
+* Offline access to saved repositories
 
-Developer Dashboard
+### Search Experience
 
-A clean dashboard built using reusable SwiftUI components.
+* Debounced user search
+* Repository filtering
+* Empty state handling
+* Error state handling
+* Loading state management
 
-Design System
+## Architecture
 
-Reusable UI building blocks:
-
-* Colors
-* Spacing
-* Corner Radius
-* Cards
-* Shared Components
-
-⸻
-
-Architecture
-
+```text
 App
-Core
- ├── Models
- ├── Extensions
- └── Utilities
-Features
- ├── Dashboard
- ├── DeveloperTools
- ├── Favorites
- └── Settings
-Network
-Storage
-DesignSystem
- ├── Components
- ├── Theme
- └── Extensions
-
-⸻
-
-Technologies
+├── Core
+│   ├── Models
+│   ├── Extensions
+│   └── Utilities
+│
+├── Features
+│   ├── Dashboard
+│   ├── DeveloperTools
+│   ├── Favorites
+│   └── Settings
+│
+├── Network
+├── Storage
+│
+└── DesignSystem
+    ├── Components
+    ├── Theme
+    └── Extensions
+```
+     
+## Technologies
 
 * Swift 6
 * SwiftUI
@@ -90,11 +90,9 @@ Technologies
 * Git
 * GitHub
 
-⸻
+## Roadmap
 
-Roadmap
-
-Completed
+### Completed
 
 * Project Architecture
 * GitHub User Search
@@ -106,16 +104,32 @@ Completed
 * Design System Components
 * Debounced Search
 
-Planned
+### Planned
 
+* iPad Optimization
 * macOS Support
-* visionOS Support
-* AI Assistant
+* visionOS Exploration
 * Developer Toolbox
 
-⸻
+## Screenshots
 
-Author
+### Dashboard
+
+![Dashboard](Resources/Screenshots/dashboard.png)
+
+### Repository Detail
+
+![Repository Detail](Resources/Screenshots/repository-detail.png)
+
+### Favorites
+
+![Favorites](Resources/Screenshots/favorites.png)
+
+### Repository Search
+
+![Repository Search](Resources/Screenshots/repository-search.png)
+
+## Author
 
 Mobile Application Developer
 
