@@ -115,19 +115,19 @@ App
 
 ### Dashboard
 
-![Dashboard](Resources/Screenshots/dashboard.png)
+![Dashboard](DevHubAIApp/Resources/Screenshots/dashboard.png)
 
 ### Repository Detail
 
-![Repository Detail](Resources/Screenshots/repository-detail.png)
+![Repository Detail](DevHubAIApp/Resources/Screenshots/repository-detail.png)
 
 ### Favorites
 
-![Favorites](Resources/Screenshots/favorites.png)
+![Favorites](DevHubAIApp/Resources/Screenshots/favorites.png)
 
 ### Repository Search
 
-![Repository Search](Resources/Screenshots/repository-search.png)
+![Repository Search](DevHubAIApp/Resources/Screenshots/repository-search.png)
 
 ## Author
 
