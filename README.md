@@ -68,7 +68,7 @@ Core
 Features
  ├── Dashboard
  ├── DeveloperTools
- ├── Notes
+ ├── Favorites
  └── Settings
 Network
 Storage
@@ -98,18 +98,16 @@ Completed
 
 * Project Architecture
 * GitHub User Search
-* Dashboard UI
-* Networking Layer
-
-In Progress
-
-* Repository List
+* GitHub Repository List
 * Repository Details
+* Repository Actions
+* Repository Filtering
+* Favorites with SwiftData
+* Design System Components
+* Debounced Search
 
 Planned
 
-* Favorites with SwiftData
-* Offline Storage
 * macOS Support
 * visionOS Support
 * AI Assistant
@@ -117,14 +115,12 @@ Planned
 
 ⸻
 
-Screenshots
-
-Coming Soon
-
-⸻
-
 Author
 
-Senior Mobile Engineer
+Mobile Application Developer
 
-SwiftUI • Kotlin Multiplatform • Android • iOS • macOS
+• SwiftUI
+• Kotlin Multiplatform
+• Android
+• iOS
+• macOS
