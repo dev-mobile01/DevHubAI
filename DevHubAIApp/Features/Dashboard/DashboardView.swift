@@ -117,23 +117,45 @@ struct DashboardView: View {
                                             .font(.title2)
                                             .bold()
 
-                                        ForEach(viewModel.repositories) { repository in
+                                        TextField(
+                                            "Search repositories",
+                                            text: $viewModel.repositorySearchText
+                                        )
+                                        .textFieldStyle(
+                                            .roundedBorder
+                                        )
+                                        
+                                        if viewModel.filteredRepositories.isEmpty {
 
-                                            NavigationLink {
+                                            EmptyStateView(
+                                                title: "No Results",
+                                                message:
+                                                    "No repositories match your search.",
+                                                systemImage:
+                                                    "magnifyingglass"
+                                            )
 
-                                                RepositoryDetailView(
-                                                    repository: repository
-                                                )
+                                        } else {
 
-                                            } label: {
+                                            ForEach(viewModel.filteredRepositories) { repository in
 
-                                                RepositoryRow(
-                                                    repository: repository
-                                                )
+                                                NavigationLink {
+
+                                                    RepositoryDetailView(
+                                                        repository: repository
+                                                    )
+
+                                                } label: {
+
+                                                    RepositoryRow(
+                                                        repository: repository
+                                                    )
+                                                }
+
+                                                Divider()
                                             }
-
-                                            Divider()
                                         }
+                                        
                                     }
 
                                 } else if viewModel.user != nil {

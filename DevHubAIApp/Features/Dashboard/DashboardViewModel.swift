@@ -25,6 +25,22 @@ final class DashboardViewModel {
     
     private var searchTask: Task<Void, Never>?
     
+    var repositorySearchText = ""
+    
+    var filteredRepositories: [GitHubRepository] {
+
+        guard !repositorySearchText.isEmpty else {
+            return repositories
+        }
+
+        return repositories.filter {
+
+            $0.name.localizedCaseInsensitiveContains(
+                repositorySearchText
+            )
+        }
+    }
+    
     func search() async {
 
         guard username.count > 2 else {
