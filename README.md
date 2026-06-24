@@ -113,21 +113,28 @@ App
 
 ## Screenshots
 
-### Dashboard
-
-![Dashboard](DevHubAIApp/Resources/Screenshots/dashboard.png)
-
-### Repository Detail
-
-![Repository Detail](DevHubAIApp/Resources/Screenshots/repository-detail.png)
-
-### Favorites
-
-![Favorites](DevHubAIApp/Resources/Screenshots/favorites.png)
-
-### Repository Search
-
-![Repository Search](DevHubAIApp/Resources/Screenshots/repository-search.png)
+<table>
+  <tr>
+    <td align="center">
+      <img src="DevHubAIApp/Resources/Screenshots/dashboard.png" width="250"><br>
+      Dashboard
+    </td>
+    <td align="center">
+      <img src="DevHubAIApp/Resources/Screenshots/repository-detail.png" width="250"><br>
+      Repository Detail
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="DevHubAIApp/Resources/Screenshots/favorites.png" width="250"><br>
+      Favorites
+    </td>
+    <td align="center">
+      <img src="DevHubAIApp/Resources/Screenshots/repository-search.png" width="250"><br>
+      Repository Search
+    </td>
+  </tr>
+</table>
 
 ## Author
 
