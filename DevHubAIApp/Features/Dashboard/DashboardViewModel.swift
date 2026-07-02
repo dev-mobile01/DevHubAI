@@ -19,26 +19,66 @@ final class DashboardViewModel {
 
     var errorMessage: String?
 
-    private let api = GitHubAPI()
-
     var repositories: [GitHubRepository] = []
     
     private var searchTask: Task<Void, Never>?
     
+    private let service: GitHubService
+
     var repositorySearchText = ""
+    
+    var selectedSort: RepositorySortOption = .name
+    
+    var currentPage = 1
+
+    var hasMorePages = true
+
+    var isLoadingMore = false
     
     var filteredRepositories: [GitHubRepository] {
 
-        guard !repositorySearchText.isEmpty else {
-            return repositories
+        let filtered: [GitHubRepository]
+
+        if repositorySearchText.isEmpty {
+
+            filtered = repositories
+
+        } else {
+
+            filtered = repositories.filter {
+
+                $0.name.localizedCaseInsensitiveContains(
+                    repositorySearchText
+                )
+            }
         }
 
-        return repositories.filter {
+        switch selectedSort {
 
-            $0.name.localizedCaseInsensitiveContains(
-                repositorySearchText
-            )
+        case .name:
+
+            return filtered.sorted {
+                $0.name < $1.name
+            }
+
+        case .stars:
+
+            return filtered.sorted {
+                $0.stargazersCount > $1.stargazersCount
+            }
+
+        case .forks:
+
+            return filtered.sorted {
+                $0.forksCount > $1.forksCount
+            }
         }
+    }
+    
+    init(
+        service: GitHubService = GitHubAPI()
+    ) {
+        self.service = service
     }
     
     func search() async {
@@ -60,12 +100,14 @@ final class DashboardViewModel {
 
         do {
 
-            user = try await api.fetchUser(
+            user = try await service.fetchUser(
                 username: username
             )
 
-            repositories = try await api.fetchRepositories(
-                username: username
+            repositories = try await service.fetchRepositories(
+                username: username,
+                page: 1,
+                perPage: 50
             )
 
         } catch {

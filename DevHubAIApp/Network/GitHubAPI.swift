@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class GitHubAPI {
+final class GitHubAPI: GitHubService {
 
     func fetchUser(
         username: String
@@ -28,13 +28,15 @@ final class GitHubAPI {
     }
     
     func fetchRepositories(
-        username: String
-    ) async throws -> [GitHubRepository] {
+        username: String,
+        page: Int = 1,
+        perPage: Int = 20
+    ) async throws -> [GitHubRepository]{
 
         let url = URL(
-            string: "https://api.github.com/users/\(username)/repos"
+            string: "https://api.github.com/users/\(username)/repos?page=\(page)&per_page=\(perPage)"
         )!
-
+        
         let (data, _) = try await URLSession.shared.data(
             from: url
         )

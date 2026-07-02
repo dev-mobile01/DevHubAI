@@ -125,6 +125,29 @@ struct DashboardView: View {
                                             .roundedBorder
                                         )
                                         
+                                        HStack {
+
+                                            Text("Sort")
+
+                                            Spacer()
+
+                                            Picker(
+                                                "",
+                                                selection: $viewModel.selectedSort
+                                            ) {
+
+                                                ForEach(
+                                                    RepositorySortOption.allCases,
+                                                    id: \.self
+                                                ) {
+
+                                                    Text($0.rawValue)
+                                                        .tag($0)
+                                                }
+                                            }
+                                            .pickerStyle(.menu)
+                                        }
+                                        
                                         if viewModel.filteredRepositories.isEmpty {
 
                                             EmptyStateView(
